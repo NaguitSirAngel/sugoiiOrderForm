@@ -1,0 +1,53 @@
+<body>
+  <div class="container">
+    <h1 class="brand"><span>Sugoii</span> Asian Cuisine</h1>
+    <br>
+    <div class="wrapper animated bounceInLeft">
+      <div class="company-info">
+        <h3>Contact</h3>
+        <ul>
+          <li><i class="fa fa-road"></i> Pampanga</li>
+          <li><i class="fa fa-phone"></i> +63 921 042 6829</li>
+          <li><i class="fa fa-envelope"></i> sugoii@gmail.com</li>
+        </ul>
+      </div>
+      <div class="contact">
+        <h3>Order Here</h3>
+        {{msg}}
+        <form method="POST" action="send">
+          <p>
+            <label>Name</label>
+            <input type="text" name="name" required>
+          </p>
+          <p>
+            <label>Address</label>
+            <input type="text" name="address" required>
+          </p>
+          <p>
+            <label>Email Address</label>
+            <input type="email" name="email" required>
+          </p>
+          <p>
+            <label>Phone Number</label>
+            <input type="text" name="phone" required>
+          </p>
+            <p>
+            <label>Mode of payment</label>
+            <input type="text" name="modePmt" required>
+          </p>
+            <p>
+            <label>Pickup Point</label>
+            <input type="text" name="pickupPoint" required>
+          </p>
+          <p class="full">
+            <label>Orders</label>
+            <textarea name="orders" rows="5" required></textarea>
+          </p>
+          <p class="full">
+            <button type="submit">Submit</button>
+          </p>
+        </form>
+      </div>
+    </div>
+  </div>
+</body>
