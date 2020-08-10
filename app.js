@@ -32,7 +32,7 @@ app.post('/send', (req, res) => {
     console.log(req.body);
     const output = `
     <p>You have a new order!</p>
-    <h3>Conatct Details</h3>
+    <h3>Details</h3>
     <ul>
         <li>Name: ${req.body.name}</li>
         <li>Address: ${req.body.address}</li>
@@ -44,6 +44,32 @@ app.post('/send', (req, res) => {
     <h3>Message</h3>
     <p>Orders: ${req.body.orders}</p>
     `
+let transporter = nodemailer.createTransport({
+    host: "smtp.gmail.com",
+    port: 587,
+    secure: false, // true for 465, false for other ports
+    auth: {
+      user: 'sirangeldummy@gmail.com', // generated ethereal user
+      pass: 'dummydummy1!', // generated ethereal password
+    },
+    tls: {
+        rejectUnauthorized: false
+    }
+  });
+
+  // send mail with defined transport object
+  let info = transporter.sendMail({
+    //from: '"Sugoii" <donotreply@sugoii.com>', // sender address
+    from: `'"Sugoii Orders" <donotreply@sugoii.com>'`, // sender address
+    to: "sirangelnaguit@gmail.com", // list of receivers
+    subject: `${req.body.name} orders`, // Subject line
+    html: output, // html body
+  });
+
+  console.log("Message sent: %s", info.messageId);
+  console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
+  res.render('home', {msg:'Order success!'});
+
 });
 
 //Specifying port when started
