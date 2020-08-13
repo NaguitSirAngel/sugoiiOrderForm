@@ -1,6 +1,6 @@
 <body>
   <div class="container">
-    <h1 class="brand"><span>Sugoii</span> Asian Cuisine</h1>
+    <img src="/public/css/assets/logo.jpg" width="100px">
     <br>
     <div class="wrapper animated bounceInLeft">
       <div class="company-info">
@@ -13,35 +13,47 @@
       </div>
       <div class="contact">
         <h3>Order Here</h3>
-        {{msg}}
+        <p style="color: #d5302e;">{{msg}}</p>
         <form method="POST" action="send">
           <p>
             <label>Name</label>
-            <input type="text" name="name" required>
+            <input class="input" type="text" name="name" required>
           </p>
           <p>
             <label>Address</label>
-            <input type="text" name="address" required>
+            <input class="input" type="text" name="address" required>
           </p>
           <p>
             <label>Email Address</label>
-            <input type="email" name="email" required>
+            <input class="input" type="email" name="email" required>
           </p>
           <p>
             <label>Phone Number</label>
-            <input type="text" name="phone" required>
+            <input class="input" type="text" name="phone" required>
           </p>
-            <p>
+          <p>
             <label>Mode of payment</label>
-            <input type="text" name="modePmt" required>
+            <select id="cars" name="modePmt">
+              <option value="BDO">BDO</option>
+              <option value="BPI">BPI</option>
+              <option value="other">other</option>
+            </select>
+          </p>
+          <p>
+            <label>Pickup Point</label>
+            <input class="input" type="text" name="pickupPoint" required>
+          </p>
+          <p>
+            Pork Gimbap <input style="width: auto;" type="checkbox" name="porkGimbap"> 
+            <br> Qty <input min="1" class="number" type="number" name="porkQty"> 
           </p>
             <p>
-            <label>Pickup Point</label>
-            <input type="text" name="pickupPoint" required>
+            Vegan Gimbap <input style="width: auto;" type="checkbox" name="veganGimbap"> 
+            <br> Qty <input min="1" class="number" type="number" name="veganQty"> 
           </p>
           <p class="full">
-            <label>Orders</label>
-            <textarea name="orders" rows="5" required></textarea>
+            <label>Instructions (Optional)</label>
+            <textarea name="instructions" rows="5"></textarea>
           </p>
           <p class="full">
             <button type="submit">Submit</button>
@@ -50,4 +62,5 @@
       </div>
     </div>
   </div>
+
 </body>

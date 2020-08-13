@@ -7,6 +7,15 @@ const nodemailer = require('nodemailer');
 
 const app = express();
 
+// exphbs.create({
+//   //Helpers
+//   helpers: {
+//     toggleOne: function () {
+//       console.log("clicked");
+//     }
+//   }
+// });
+
 //View Engine setup using Express-handlebars
 //app.engine('handlebars', exphbs());
 //app.set('view engine', 'handlebars');
@@ -24,12 +33,23 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.get('/', (req, res) => {
-    //res.send('Hello');
     res.render('home');
 });
 
 app.post('/send', (req, res) => {
     console.log(req.body);
+    let orders = "";
+    if(req.body.porkGimbap){
+      orders += `
+      <li>Order: PorkGimbap ${req.body.porkQty}x</li>
+      `
+    }
+    
+    if(req.body.veganGimbap){
+      orders += `
+      <li>Order: VeganGimbap ${req.body.veganQty}x</li>
+      `
+    }
     const output = `
     <p>You have a new order!</p>
     <h3>Details</h3>
@@ -40,9 +60,10 @@ app.post('/send', (req, res) => {
         <li>Phone: ${req.body.phone}</li>
         <li>Mode of Payment: ${req.body.modePmt}</li>
         <li>Pickup Point: ${req.body.pickupPoint}</li>
+        ${orders}
     </ul>
-    <h3>Message</h3>
-    <p>Orders: ${req.body.orders}</p>
+    <h3>Instructions</h3>
+    <p>${req.body.instructions}</p>
     `
 let transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",
