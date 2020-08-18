@@ -7,21 +7,17 @@ const nodemailer = require('nodemailer');
 
 const app = express();
 
-// exphbs.create({
-//   //Helpers
-//   helpers: {
-//     toggleOne: function () {
-//       console.log("clicked");
-//     }
-//   }
-// });
-
 //View Engine setup using Express-handlebars
 //app.engine('handlebars', exphbs());
 //app.set('view engine', 'handlebars');
 app.engine('hbs', exphbs({
     defaultLayout: 'main',
-    extname: '.hbs'
+    extname: '.hbs',
+    helpers: {
+      toggleOne: () => {
+        return console.log('tangina this')
+      }
+    }
   }));
 app.set('view engine', 'hbs');
 
