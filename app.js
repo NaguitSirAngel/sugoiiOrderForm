@@ -1,52 +1,50 @@
 //Dependencies
-const express = require('express');
-const bodyParser = require('body-parser');
-const exphbs = require('express-handlebars');
-const path = require('path');
-const nodemailer = require('nodemailer');
+const express = require("express");
+const bodyParser = require("body-parser");
+const exphbs = require("express-handlebars");
+const path = require("path");
+const nodemailer = require("nodemailer");
 
 const app = express();
 
 //View Engine setup using Express-handlebars
-//app.engine('handlebars', exphbs());
-//app.set('view engine', 'handlebars');
-app.engine('hbs', exphbs({
-    defaultLayout: 'main',
-    extname: '.hbs',
-    helpers: {
-      toggleOne: () => {
-        return console.log('tangina this')
-      }
-    }
-  }));
-app.set('view engine', 'hbs');
+app.engine(
+  "hbs",
+  exphbs({
+    defaultLayout: "main",
+    extname: ".hbs",
+  })
+);
+
+app.set("view engine", "hbs");
 
 //Static folder
-app.use('/public', express.static(path.join(__dirname,'public')));
+app.use("/public", express.static(path.join(__dirname, "public")));
 
 //Body Parser Middleware
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-app.get('/', (req, res) => {
-    res.render('home');
+//Render Home
+app.get("/", (req, res) => {
+  res.render("home");
 });
 
-app.post('/send', (req, res) => {
-    console.log(req.body);
-    let orders = "";
-    if(req.body.porkGimbap){
-      orders += `
-      <li>Order: PorkGimbap ${req.body.porkQty}x</li>
-      `
-    }
-    
-    if(req.body.veganGimbap){
-      orders += `
-      <li>Order: VeganGimbap ${req.body.veganQty}x</li>
-      `
-    }
-    const output = `
+//Once submit button is clicked POST
+app.post("/send", (req, res) => {
+  console.log(req.body);
+  let orders = "";
+  if (req.body.porkGimbap) {
+    orders += `
+      <li>Order: PorkGimbap ${req.body.porkQty}x</li>`;
+  }
+
+  if (req.body.veganGimbap) {
+    orders += `
+      <li>Order: VeganGimbap ${req.body.veganQty}x</li>`;
+  }
+
+  const output = `
     <p>You have a new order!</p>
     <h3>Details</h3>
     <ul>
@@ -60,18 +58,18 @@ app.post('/send', (req, res) => {
     </ul>
     <h3>Instructions</h3>
     <p>${req.body.instructions}</p>
-    `
-let transporter = nodemailer.createTransport({
+    `;
+  let transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",
     port: 587,
     secure: false, // true for 465, false for other ports
     auth: {
-      user: 'sirangeldummy@gmail.com', // generated ethereal user
-      pass: 'dummydummy1!', // generated ethereal password
+      user: "sirangeldummy@gmail.com", // generated ethereal user
+      pass: "dummydummy1!", // generated ethereal password
     },
     tls: {
-        rejectUnauthorized: false
-    }
+      rejectUnauthorized: false,
+    },
   });
 
   // send mail with defined transport object
@@ -85,9 +83,11 @@ let transporter = nodemailer.createTransport({
 
   console.log("Message sent: %s", info.messageId);
   console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
-  res.render('home', {msg:'Order success!'});
-
+  res.render("home", { msg: "Order success!" });
 });
 
-//Specifying port when started
-app.listen(3001, () => console.log('Server started...'));
+//Specifying port when started 
+//Local Port
+app.listen(process.env.PORT || 3001, () => console.log("Server started..."));
+
+//Heroku Port = process.env.PORT
