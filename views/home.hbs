@@ -6,14 +6,14 @@
       <div class="company-info">
         <h3>Contact</h3>
         <ul>
-          <li><i class="fa fa-road"></i> Pampanga</li>
+          <li><i class="fa fa-road"></i> San Fernando, Pampanga</li>
           <li><i class="fa fa-phone"></i> +63 921 042 6829</li>
-          <li><i class="fa fa-envelope"></i> sugoii@gmail.com</li>
+          <li><i class="fa fa-envelope"></i> sugoiifoods@gmail.com</li>
         </ul>
       </div>
       <div class="contact">
         <h3>Order Here</h3>
-        <p style="color: #d5302e;">{{msg}}</p>
+        <p style="color: #06640a;">{{msg}}</p>
         <form method="POST" action="send">
           <p>
             <label>Name</label>
@@ -32,7 +32,7 @@
             <input class="input" type="text" name="phone" required>
           </p>
           <p>
-            <label>Mode of payment</label>
+            <label>Payment</label>
             <select id="cars" name="modePmt">
               <option value="BDO">BDO</option>
               <option value="BPI">BPI</option>
@@ -44,12 +44,12 @@
             <input class="input" type="text" name="pickupPoint" required>
           </p>
           <p>
-            Pork Gimbap <input style="width: auto;" type="checkbox" name="porkGimbap" id="idPorkGimbap"
+            Pork <input style="width: auto;" type="checkbox" name="porkGimbap" id="idPorkGimbap"
               onclick="togg()">
             <br> Qty <input min="1" class="number" type="number" name="porkQty" id="idPorkQty" disabled>
           </p>
           <p>
-            Vegan Gimbap <input style="width: auto;" type="checkbox" name="veganGimbap" id="idVeganGimbap" onclick="togg()">
+            Vegan <input style="width: auto;" type="checkbox" name="veganGimbap" id="idVeganGimbap" onclick="togg()">
             <br> Qty <input min="1" class="number" type="number" name="veganQty" id="idVeganQty" disabled>
           </p>
           <p class="full">
