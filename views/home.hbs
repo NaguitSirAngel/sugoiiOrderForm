@@ -17,31 +17,30 @@
         <form method="POST" action="send">
           <p>
             <label>Name</label>
-            <input class="input" type="text" name="name" required>
+            <input class="input" type="text" name="name" placeholder="John Doe" required>
           </p>
           <p>
             <label>Address</label>
-            <input class="input" type="text" name="address" required>
+            <input class="input" type="text" name="address" placeholder="01 Street, City" required>
           </p>
           <p>
             <label>Email Address</label>
-            <input class="input" type="email" name="email" required>
+            <input class="input" type="email" name="email" placeholder="johndoe@email.com" required>
           </p>
           <p>
-            <label>Phone Number</label>
-            <input class="input" type="text" name="phone" required>
+            <label>Phone # (09051234567)</label>
+            <input class="input" type="tel" pattern="[0-9]{4}[0-9]{3}[0-9]{4}" name="phone" required>
           </p>
           <p>
             <label>Payment</label>
             <select id="cars" name="modePmt">
               <option value="BDO">BDO</option>
               <option value="BPI">BPI</option>
-              <option value="other">other</option>
+              <option value="other">Cash on delivery</option>
             </select>
           </p>
           <p>
-            <label>Pickup Point</label>
-            <input class="input" type="text" name="pickupPoint" required>
+            
           </p>
           <p>
             Pork <input style="width: auto;" type="checkbox" name="porkGimbap" id="idPorkGimbap"
