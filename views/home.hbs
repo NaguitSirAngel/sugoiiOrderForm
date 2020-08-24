@@ -14,25 +14,30 @@
       <div class="contact">
         <h3>Order Here</h3>
         <p style="color: #06640a;">{{msg}}</p>
+        <p style="color: #d5302e;">{{vldMsg}}</p>
+
+
+
+        
         <form method="POST" action="send">
           <p>
-            <label>Name</label>
+            <label>Name*</label>
             <input class="input" type="text" name="name" placeholder="John Doe" required>
           </p>
           <p>
-            <label>Address</label>
+            <label>Address*</label>
             <input class="input" type="text" name="address" placeholder="01 Street, City" required>
           </p>
           <p>
-            <label>Email Address</label>
+            <label>Email Address*</label>
             <input class="input" type="email" name="email" placeholder="johndoe@email.com" required>
           </p>
           <p>
-            <label>Phone #</label>
+            <label>Phone*</label>
             <input class="input" type="tel" pattern="[0-9]{4}[0-9]{3}[0-9]{4}" placeholder="09051234567" name="phone" required>
           </p>
           <p>
-            <label>Payment</label>
+            <label>Payment*</label>
             <select id="cars" name="modePmt">
               <option value="BDO">BDO</option>
               <option value="BPI">BPI</option>
