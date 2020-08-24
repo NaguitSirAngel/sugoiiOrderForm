@@ -118,3 +118,27 @@ ul{
   }
 }
 
+/* Success */
+.success{
+  margin: auto;
+  text-align: center;
+}
+
+.myButton{
+  background:black;
+  border:0;
+  text-transform: uppercase;
+  color: white;
+  width:50%;
+  padding:1em;
+  border:1px solid black;
+}
+
+.myButton:hover, .myButton:focus{
+  background:#d5302e;
+  color:white;
+  outline:0;
+  transition: background-color 2s ease-out;
+}
+
+

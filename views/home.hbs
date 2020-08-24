@@ -16,32 +16,29 @@
         <p style="color: #06640a;">{{msg}}</p>
         <p style="color: #d5302e;">{{vldMsg}}</p>
 
-
-
-        
         <form method="POST" action="send">
           <p>
             <label>Name*</label>
-            <input class="input" type="text" name="name" placeholder="John Doe" required>
+            <input class="input" type="text" name="name" placeholder="John Doe" value="{{name}}" required >
           </p>
           <p>
             <label>Address*</label>
-            <input class="input" type="text" name="address" placeholder="01 Street, City" required>
+            <input class="input" type="text" name="address" placeholder="01 Street, City" value="{{address}}" required >
           </p>
           <p>
             <label>Email Address*</label>
-            <input class="input" type="email" name="email" placeholder="johndoe@email.com" required>
+            <input class="input" type="email" name="email" placeholder="johndoe@email.com" value="{{emailAddress}}" required >
           </p>
           <p>
             <label>Phone*</label>
-            <input class="input" type="tel" pattern="[0-9]{4}[0-9]{3}[0-9]{4}" placeholder="09051234567" name="phone" required>
+            <input class="input" type="tel" pattern="[0-9]{4}[0-9]{3}[0-9]{4}" placeholder="09051234567" name="phone" value="{{phone}}" required >
           </p>
           <p>
             <label>Payment*</label>
             <select id="cars" name="modePmt">
               <option value="BDO">BDO</option>
               <option value="BPI">BPI</option>
-              <option value="other">Cash on delivery</option>
+              <option value="CoD">Cash on delivery</option>
             </select>
           </p>
           <p>

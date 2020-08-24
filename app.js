@@ -90,6 +90,21 @@ app.post("/send", (req, res) => {
             },
           });
 
+          const outputClient = `
+    <p>Here is your order summary. Thank you very much! We will be contacting you soon!</p>
+    <h3>Details</h3>
+    <ul>
+        <li>Name: ${req.body.name}</li>
+        <li>Address: ${req.body.address}</li>
+        <li>Email: ${req.body.email}</li>
+        <li>Phone: ${req.body.phone}</li>
+        <li>Mode of Payment: ${req.body.modePmt}</li>
+        ${orders}
+    </ul>
+    <h3>Instructions</h3>
+    <p>${req.body.instructions}</p>
+    `;
+
           // send mail with defined transport object
           let info = transporter.sendMail({
             //from: '"Sugoii" <donotreply@sugoii.com>', // sender address
@@ -99,20 +114,70 @@ app.post("/send", (req, res) => {
             html: output, // html body
           });
 
+          let transporterClient = nodemailer.createTransport({
+            host: "smtp.gmail.com",
+            port: 587,
+            secure: false, // true for 465, false for other ports
+            auth: {
+              user: "sirangeldummy@gmail.com", // generated ethereal user
+              pass: "dummydummy1!", // generated ethereal password
+            },
+            tls: {
+              rejectUnauthorized: false,
+            },
+          });
+
+          // send mail with defined transport object
+          let infoClient = transporterClient.sendMail({
+            //from: '"Sugoii" <donotreply@sugoii.com>', // sender address
+            from: `'"Sugoii" <donotreply@sugoii.com>'`, // sender address
+            to: emailAddress, // list of receivers
+            subject: `Order Success!`, // Subject line
+            html: outputClient, // html body
+          });
+          console.log("Message sent: %s", infoClient.messageId);
           console.log("Message sent: %s", info.messageId);
+          console.log(
+            "Preview URL: %s",
+            nodemailer.getTestMessageUrl(infoClient)
+          );
           console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
-          res.render("home", { msg: "Order success!" });
+          res.render("success");
         } else {
-          res.render("home", { vldMsg: "Phone number not valid." });
+          res.render("home", {
+            vldMsg: "Phone number not valid.",
+            name: name,
+            address: address,
+            emailAddress: emailAddress,
+            phone: phone,
+          });
         }
       } else {
-        res.render("home", { vldMsg: "Email not valid." });
+        res.render("home", {
+          vldMsg: "Email not valid.",
+          name: name,
+          address: address,
+          emailAddress: emailAddress,
+          phone: phone,
+        });
       }
     } else {
-      res.render("home", { vldMsg: "No order selected." });
+      res.render("home", {
+        vldMsg: "No order selected.",
+        name: name,
+        address: address,
+        emailAddress: emailAddress,
+        phone: phone,
+      });
     }
   } else {
-    res.render("home", { vldMsg: "Required fields (*) must be completed." });
+    res.render("home", {
+      vldMsg: "Required fields (*) must be completed.",
+      name: name,
+      address: address,
+      emailAddress: emailAddress,
+      phone: phone,
+    });
   }
 });
 
