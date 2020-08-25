@@ -15,4 +15,20 @@ function togg(){
       document.getElementById("idVeganQty").disabled = true;
       document.getElementById("idVeganQty").value = "";
     }
+
+    if(document.getElementById("idGimbox").checked){
+      document.getElementById("idGimboxQty").disabled = false;
+      document.getElementById("idGimboxQty").value = 1;
+
+      document.getElementById("idSelect").disabled = false;
+
+
+      }else{
+        document.getElementById("idGimboxQty").disabled = true;
+        document.getElementById("idGimboxQty").value = "";
+
+        document.getElementById("idSelect").disabled = true;
+      }
+
+
 }
