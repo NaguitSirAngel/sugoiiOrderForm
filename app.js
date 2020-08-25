@@ -42,12 +42,17 @@ app.post("/send", (req, res) => {
   //let modePmt = req.body.modePmt; //req always has a value
   let pork = req.body.porkGimbap; // partial req
   let vegan = req.body.veganGimbap; // partial req
-  let porkGimbox;
-  let veganGimbox;
+  let gimbox40 = req.body.gimbox40;
+  let select40 = req.body.select40;
+  let gimboxQty40 = req.body.gimboxQty40;
+  let gimbox80 = req.body.gimbox80;
+  let select80 = req.body.select80;
+  let gimboxQty80 = req.body.gimboxQty80;
+
 
   if (name || address || emailAddress || phone) {
     //partial reqs
-    if (pork || vegan) {
+    if (pork || vegan || gimbox40 || gimbox80 ) {
       //email validation
       let re = /\S+@\S+\.\S+/;
       if (re.test(emailAddress)) {
@@ -64,6 +69,20 @@ app.post("/send", (req, res) => {
             orders += `
       <li>Order: VeganGimbap ${req.body.veganQty}x</li>`;
           }
+
+
+          if (req.body.gimbox40) {
+            orders += `
+      <li>Order: Gimbox(40) ${req.body.gimboxQty40}x (${select40})</li>`;
+          }
+
+          if (req.body.gimbox80) {
+            orders += `
+      <li>Order: Gimbox(80) ${req.body.gimboxQty80}x (${select80})</li>`;
+          }
+
+
+
 
           const output = `
     <p>You have a new order!</p>
@@ -84,8 +103,8 @@ app.post("/send", (req, res) => {
             port: 587,
             secure: false, // true for 465, false for other ports
             auth: {
-              user: "sirangeldummy@gmail.com", // generated ethereal user
-              pass: "dummydummy1!", // generated ethereal password
+              user: "sugoiifoods@gmail.com", // generated ethereal user
+              pass: "Outbreak01", // generated ethereal password
             },
             tls: {
               rejectUnauthorized: false,
@@ -111,7 +130,7 @@ app.post("/send", (req, res) => {
           let info = transporter.sendMail({
             //from: '"Sugoii" <donotreply@sugoii.com>', // sender address
             from: `'"Sugoii Orders" <donotreply@sugoii.com>'`, // sender address
-            to: "sirangelnaguit@gmail.com", // list of receivers
+            to: "sugoiifoods@gmail.com", // list of receivers
             subject: `${req.body.name} orders`, // Subject line
             html: output, // html body
           });
@@ -121,8 +140,8 @@ app.post("/send", (req, res) => {
             port: 587,
             secure: false, // true for 465, false for other ports
             auth: {
-              user: "sirangeldummy@gmail.com", // generated ethereal user
-              pass: "dummydummy1!", // generated ethereal password
+              user: "sugoiifoods@gmail.com", // generated ethereal user
+              pass: "Outbreak01", // generated ethereal password
             },
             tls: {
               rejectUnauthorized: false,

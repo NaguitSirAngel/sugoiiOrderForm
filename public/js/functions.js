@@ -16,19 +16,33 @@ function togg(){
       document.getElementById("idVeganQty").value = "";
     }
 
-    if(document.getElementById("idGimbox").checked){
-      document.getElementById("idGimboxQty").disabled = false;
-      document.getElementById("idGimboxQty").value = 1;
+    if(document.getElementById("idGimbox40").checked){
+      document.getElementById("idGimboxQty40").disabled = false;
+      document.getElementById("idGimboxQty40").value = 1;
 
-      document.getElementById("idSelect").disabled = false;
+      document.getElementById("idSelect40").disabled = false;
 
 
       }else{
-        document.getElementById("idGimboxQty").disabled = true;
-        document.getElementById("idGimboxQty").value = "";
+        document.getElementById("idGimboxQty40").disabled = true;
+        document.getElementById("idGimboxQty40").value = "";
 
-        document.getElementById("idSelect").disabled = true;
+        document.getElementById("idSelect40").disabled = true;
       }
+
+      if(document.getElementById("idGimbox80").checked){
+        document.getElementById("idGimboxQty80").disabled = false;
+        document.getElementById("idGimboxQty80").value = 1;
+  
+        document.getElementById("idSelect80").disabled = false;
+  
+  
+        }else{
+          document.getElementById("idGimboxQty80").disabled = true;
+          document.getElementById("idGimboxQty80").value = "";
+  
+          document.getElementById("idSelect80").disabled = true;
+        }
 
 
 }
