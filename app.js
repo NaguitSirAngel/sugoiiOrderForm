@@ -42,6 +42,8 @@ app.post("/send", (req, res) => {
   //let modePmt = req.body.modePmt; //req always has a value
   let pork = req.body.porkGimbap; // partial req
   let vegan = req.body.veganGimbap; // partial req
+  let porkGimbox;
+  let veganGimbox;
 
   if (name || address || emailAddress || phone) {
     //partial reqs
