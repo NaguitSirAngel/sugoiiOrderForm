@@ -35,7 +35,7 @@
           </p>
           <p>
             <label>Payment*</label>
-            <select id="cars" name="modePmt">
+            <select id="mode" name="modePmt">
               <option value="BDO">BDO</option>
               <option value="BPI">BPI</option>
               <option value="CoD">Cash on delivery</option>
@@ -52,6 +52,17 @@
           <p>
             Vegan <input style="width: auto;" type="checkbox" name="veganGimbap" id="idVeganGimbap" onclick="togg()">
             <br> Qty <input min="1" class="number" type="number" name="veganQty" id="idVeganQty" disabled>
+          </p>
+          <p>
+            Gimbox <input style="width: auto;" type="checkbox" name="gimbox" id="idGimbox"
+              onclick="togg()">
+            <br> Select
+            <select id="idSelect" name="select" disabled>
+              <option value="Pork Gimbox">Pork</option>
+              <option value="Vegan Gimbox">Vegan</option>
+              <option value="Half n Half Gimbox">Half and half</option>
+            </select>
+            <br> Qty <input min="1" class="number" type="number" name="gimboxQty" id="idGimboxQty" disabled>
           </p>
           <p class="full">
             <label>Instructions (Optional)</label>
