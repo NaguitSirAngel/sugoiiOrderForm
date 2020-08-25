@@ -103,8 +103,8 @@ app.post("/send", (req, res) => {
             port: 587,
             secure: false, // true for 465, false for other ports
             auth: {
-              user: "sirangeldummy@gmail.com", // generated ethereal user
-              pass: "dummydummy1!", // generated ethereal password
+              user: "sugoiifoods@gmail.com", // generated ethereal user
+              pass: "Outbreak01", // generated ethereal password
             },
             tls: {
               rejectUnauthorized: false,
@@ -130,7 +130,7 @@ app.post("/send", (req, res) => {
           let info = transporter.sendMail({
             //from: '"Sugoii" <donotreply@sugoii.com>', // sender address
             from: `'"Sugoii Orders" <donotreply@sugoii.com>'`, // sender address
-            to: "sirangelnaguit@gmail.com", // list of receivers
+            to: "sugoiifoods@gmail.com", // list of receivers
             subject: `${req.body.name} orders`, // Subject line
             html: output, // html body
           });
@@ -140,8 +140,8 @@ app.post("/send", (req, res) => {
             port: 587,
             secure: false, // true for 465, false for other ports
             auth: {
-              user: "sirangeldummy@gmail.com", // generated ethereal user
-              pass: "dummydummy1!", // generated ethereal password
+              user: "sugoiifoods@gmail.com", // generated ethereal user
+              pass: "Outbreak01", // generated ethereal password
             },
             tls: {
               rejectUnauthorized: false,
