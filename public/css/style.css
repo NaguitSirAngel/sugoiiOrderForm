@@ -91,6 +91,8 @@ ul{
   border:1px solid black;
   width:100%;
   padding:1em;
+  -webkit-appearance: none;
+   border-radius:0; 
 }
 .contact form button{
   background:black;
