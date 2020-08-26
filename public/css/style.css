@@ -77,6 +77,8 @@ ul{
   width:100%;
   padding:1em;
   border:1px solid black;
+  -webkit-appearance: none;
+   border-radius:0; 
 }
 .input{
   width:100%;
