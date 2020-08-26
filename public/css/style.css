@@ -83,6 +83,7 @@ ul{
   padding:1em;
   border:1px solid black;
   -webkit-appearance: none;
+   border-radius:0; 
 }
 .number{
   border:1px solid black;
