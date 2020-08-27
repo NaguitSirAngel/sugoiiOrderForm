@@ -1,3 +1,3 @@
 # sugoiiOrderForm
  Sugoii Order Form (Prototype)
- emails to order takers
+ emails to order taker
