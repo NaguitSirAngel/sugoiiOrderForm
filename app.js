@@ -31,13 +31,11 @@ app.get("/", (req, res) => {
 
 //Once submit button is clicked POST
 app.post("/send", (req, res) => {
-  //console.log(req.body);
 
   let name = req.body.name; //req
   let address = req.body.address; //req
   let emailAddress = req.body.email; //req
   let phone = req.body.phone; //req
-  //let modePmt = req.body.modePmt; //req always has a value
   let pork = req.body.porkGimbap; // partial req
   let vegan = req.body.veganGimbap; // partial req
   let gimbox40 = req.body.gimbox40;

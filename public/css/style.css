@@ -102,7 +102,7 @@ ul{
 }
 
 .contact form button:hover,.contact form button:focus{
-  background:#d5302e;
+  background:#06640a;;
   color:white;
   outline:0;
   transition: background-color 2s ease-out;
@@ -141,7 +141,7 @@ ul{
 }
 
 .myButton:hover, .myButton:focus{
-  background:#d5302e;
+  background:#06640a;;
   color:white;
   outline:0;
   transition: background-color 2s ease-out;
