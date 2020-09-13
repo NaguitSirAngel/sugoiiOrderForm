@@ -147,4 +147,9 @@ ul{
   transition: background-color 2s ease-out;
 }
 
+.copy p {
+  padding: 2em;
+  text-align: center;
+}
+
 
