@@ -87,6 +87,7 @@ ul{
   -webkit-appearance: none;
    border-radius:0; 
 }
+
 .number{
   border:1px solid black;
   width:100%;
@@ -141,7 +142,7 @@ ul{
 }
 
 .myButton:hover, .myButton:focus{
-  background:#06640a;;
+  background:#06640a;
   color:white;
   outline:0;
   transition: background-color 2s ease-out;
@@ -151,5 +152,10 @@ ul{
   padding: 2em;
   text-align: center;
 }
+
+textarea {
+  resize: none;
+}
+
 
 

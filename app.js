@@ -42,6 +42,8 @@ app.post("/send", (req, res) => {
   let emailAddress = req.body.email; //req
   let phone = req.body.phone; //req
   let pork = req.body.porkGimbap; // partial req
+  //console.log(pork);
+  //console.log(name);
 
   let vegan = req.body.veganGimbap; // partial req
 
@@ -155,7 +157,8 @@ app.post("/send", (req, res) => {
             address: address,
             emailAddress: emailAddress,
             phone: phone,
-            instructions: instructions
+            instructions: instructions,
+            //pork: pork
           });
         }
       } else {
@@ -166,7 +169,8 @@ app.post("/send", (req, res) => {
           address: address,
           emailAddress: emailAddress,
           phone: phone,
-          instructions: instructions
+          instructions: instructions,
+          //pork: pork
         });
       }
     } else {
@@ -177,7 +181,8 @@ app.post("/send", (req, res) => {
         address: address,
         emailAddress: emailAddress,
         phone: phone,
-        instructions: instructions
+        instructions: instructions,
+        //pork: pork
       });
     }
   } else {
@@ -188,7 +193,8 @@ app.post("/send", (req, res) => {
       address: address,
       emailAddress: emailAddress,
       phone: phone,
-      instructions: instructions
+      instructions: instructions,
+      //pork: pork
     });
   }
 });
