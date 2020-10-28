@@ -5,6 +5,11 @@ const exphbs = require("express-handlebars");
 const path = require("path");
 const nodemailer = require("nodemailer");
 const app = express();
+require('dotenv').config();
+
+//console.log(process.env.EMAIL);
+//console.log(process.env.EMAIL_PASS);
+
 
 //View Engine setup using Express-handlebars
 app.engine(
@@ -37,11 +42,16 @@ app.post("/send", (req, res) => {
   let emailAddress = req.body.email; //req
   let phone = req.body.phone; //req
   let pork = req.body.porkGimbap; // partial req
+
   let vegan = req.body.veganGimbap; // partial req
+
   let gimbox40 = req.body.gimbox40;
   let select40 = req.body.select40;
+
   let gimbox80 = req.body.gimbox80;
   let select80 = req.body.select80;
+  
+  let instructions = req.body.instructions;
 
   if (name || address || emailAddress || phone) {
     //partial reqs
@@ -104,8 +114,8 @@ app.post("/send", (req, res) => {
             port: 587,
             secure: false, // true for 465, false for other ports
             auth: {
-              user: "sirangeldummy@gmail.com", // generated ethereal user
-              pass: "dummydummy1!", // generated ethereal password
+              user: process.env.EMAIL, // generated ethereal user
+              pass: process.env.EMAIL_PASS, // generated ethereal password
             },
             tls: {
               rejectUnauthorized: false,
@@ -145,6 +155,7 @@ app.post("/send", (req, res) => {
             address: address,
             emailAddress: emailAddress,
             phone: phone,
+            instructions: instructions
           });
         }
       } else {
@@ -155,6 +166,7 @@ app.post("/send", (req, res) => {
           address: address,
           emailAddress: emailAddress,
           phone: phone,
+          instructions: instructions
         });
       }
     } else {
@@ -165,6 +177,7 @@ app.post("/send", (req, res) => {
         address: address,
         emailAddress: emailAddress,
         phone: phone,
+        instructions: instructions
       });
     }
   } else {
@@ -175,6 +188,7 @@ app.post("/send", (req, res) => {
       address: address,
       emailAddress: emailAddress,
       phone: phone,
+      instructions: instructions
     });
   }
 });
