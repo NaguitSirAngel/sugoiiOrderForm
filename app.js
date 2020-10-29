@@ -42,6 +42,10 @@ app.post("/send", (req, res) => {
   let emailAddress = req.body.email; //req
   let phone = req.body.phone; //req
   let pork = req.body.porkGimbap; // partial req
+  let bulgogi = req.body.bulgogiGimbap;
+  let spam = req.body.spamGimbap;
+  //console.log(pork);
+  //console.log(name);
 
   let vegan = req.body.veganGimbap; // partial req
 
@@ -55,7 +59,7 @@ app.post("/send", (req, res) => {
 
   if (name || address || emailAddress || phone) {
     //partial reqs
-    if (pork || vegan || gimbox40 || gimbox80) {
+    if (pork || vegan || bulgogi || spam || gimbox40 || gimbox80) {
       //email validation
       let re = /\S+@\S+\.\S+/;
       if (re.test(emailAddress)) {
@@ -63,19 +67,27 @@ app.post("/send", (req, res) => {
         let phoneRe = /[0-9]{4}[0-9]{3}[0-9]{4}/;
         if (phoneRe.test(phone)) {
           let orders = "";
-          if (req.body.porkGimbap) {
+          if (pork) {
             orders += `
-      <li>Order: PorkGimbap ${req.body.porkQty}x</li>`;
+      <li>Order: Pork Gimbap ${req.body.porkQty}x</li>`;
           }
-          if (req.body.veganGimbap) {
+          if (vegan) {
             orders += `
-      <li>Order: VeganGimbap ${req.body.veganQty}x</li>`;
+      <li>Order: Vegan Gimbap ${req.body.veganQty}x</li>`;
           }
-          if (req.body.gimbox40) {
+          if (bulgogi) {
+            orders += `
+      <li>Order: Bulgogi Gimbap ${req.body.bulgogiQty}x</li>`;
+          }
+          if (spam) {
+            orders += `
+      <li>Order: Spam and Egg Gimbap ${req.body.spamQty}x</li>`;
+          }
+          if (gimbox40) {
             orders += `
       <li>Order: Gimbox(40) ${req.body.gimboxQty40}x (${select40})</li>`;
           }
-          if (req.body.gimbox80) {
+          if (gimbox80) {
             orders += `
       <li>Order: Gimbox(80) ${req.body.gimboxQty80}x (${select80})</li>`;
           }
@@ -155,7 +167,8 @@ app.post("/send", (req, res) => {
             address: address,
             emailAddress: emailAddress,
             phone: phone,
-            instructions: instructions
+            instructions: instructions,
+            //pork: pork
           });
         }
       } else {
@@ -166,7 +179,8 @@ app.post("/send", (req, res) => {
           address: address,
           emailAddress: emailAddress,
           phone: phone,
-          instructions: instructions
+          instructions: instructions,
+          //pork: pork
         });
       }
     } else {
@@ -177,7 +191,8 @@ app.post("/send", (req, res) => {
         address: address,
         emailAddress: emailAddress,
         phone: phone,
-        instructions: instructions
+        instructions: instructions,
+        //pork: pork
       });
     }
   } else {
@@ -188,7 +203,8 @@ app.post("/send", (req, res) => {
       address: address,
       emailAddress: emailAddress,
       phone: phone,
-      instructions: instructions
+      instructions: instructions,
+      //pork: pork
     });
   }
 });
