@@ -16,7 +16,7 @@
         <p style="color: #06640a;">{{msg}}</p>
         <p style="color: #d5302e;">{{vldMsg}}</p>
 
-        <form method="POST" action="send">
+        <form method="POST" action="send" onsubmit="return confirm('Are you sure about the order?');">
           <p>
             <label>Name*</label>
             <input class="input" type="text" name="name" placeholder="John Doe" value="{{name}}" required >
@@ -104,6 +104,14 @@
     </script>
   </div>
   <div class="copy">
-  <p>Sugoii © 2020</p>
+     <div class="logos">
+       <a class="linkIns" target="_blank" href="https://www.instagram.com/sugoiiph/">
+             <img src="https://img.icons8.com/material/48/000000/instagram-new--v1.png"/>   
+       </a>
+       <a class="linkIns" target="_blank" href="https://www.facebook.com/sugoiiph/">
+            <img src="https://img.icons8.com/material/48/000000/facebook-new.png"/>  
+       </a>
+     </div>
+          <p><b>Sugoii Asian Cuisine</b> © 2020</p>
   </div>
 </body>
