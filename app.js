@@ -122,6 +122,9 @@ app.post("/send", (req, res) => {
         else if(select40 == "Spam and Egg Gimbox"){
           price += 550 * req.body.gimboxQty40;
         } 
+        else if(select40 == "Assorted"){
+          price += 600 * req.body.gimboxQty40;
+        } 
       }else{
         if (select40 == "Pork Gimbox") {
           price += 500;
@@ -134,6 +137,9 @@ app.post("/send", (req, res) => {
         }
         else if(select40 == "Spam and Egg Gimbox"){
           price += 550;
+        } 
+        else if(select40 == "Assorted"){
+          price += 600;
         } 
       } 
       
@@ -155,6 +161,9 @@ app.post("/send", (req, res) => {
         else if(select80 == "Spam and Egg Gimbox"){
           price += 950 * req.body.gimboxQty80;
         } 
+        else if(select80 == "Assorted"){
+          price += 1000 * req.body.gimboxQty80;
+        } 
       }else{
         if (select80 == "Pork Gimbox") {
           price += 900;
@@ -167,6 +176,9 @@ app.post("/send", (req, res) => {
         }
         else if(select80 == "Spam and Egg Gimbox"){
           price += 950;
+        } 
+        else if(select80 == "Assorted"){
+          price += 1000;
         } 
       } 
           }
