@@ -5,11 +5,10 @@ const exphbs = require("express-handlebars");
 const path = require("path");
 const nodemailer = require("nodemailer");
 const app = express();
-require('dotenv').config();
+require("dotenv").config();
 
 //console.log(process.env.EMAIL);
 //console.log(process.env.EMAIL_PASS);
-
 
 //View Engine setup using Express-handlebars
 app.engine(
@@ -36,7 +35,6 @@ app.get("/", (req, res) => {
 
 //Once submit button is clicked POST
 app.post("/send", (req, res) => {
-
   let name = req.body.name; //req
   let address = req.body.address; //req
   let emailAddress = req.body.email; //req
@@ -54,8 +52,11 @@ app.post("/send", (req, res) => {
 
   let gimbox80 = req.body.gimbox80;
   let select80 = req.body.select80;
-  
+
   let instructions = req.body.instructions;
+
+  //price var
+  let price = 0;
 
   if (name || address || emailAddress || phone) {
     //partial reqs
@@ -65,36 +66,126 @@ app.post("/send", (req, res) => {
       if (re.test(emailAddress)) {
         //phone number validation
         let phoneRe = /[0-9]{4}[0-9]{3}[0-9]{4}/;
+        //price calculations will be here
         if (phoneRe.test(phone)) {
           let orders = "";
           if (pork) {
             orders += `
       <li>Order: Pork Gimbap ${req.body.porkQty}x</li>`;
+            if (req.body.porkQty > 1) {
+              price += 150 * req.body.porkQty;
+            } else {
+              price += 150;
+            }
           }
           if (vegan) {
             orders += `
       <li>Order: Vegan Gimbap ${req.body.veganQty}x</li>`;
+            if (req.body.veganQty > 1) {
+              price += 150 * req.body.veganQty;
+            } else {
+              price += 150;
+            }
           }
           if (bulgogi) {
             orders += `
       <li>Order: Bulgogi Gimbap ${req.body.bulgogiQty}x</li>`;
+            if (req.body.bulgogiQty > 1) {
+              price += 160 * req.body.bulgogiQty;
+            } else {
+              price += 160;
+            }
           }
           if (spam) {
             orders += `
       <li>Order: Spam and Egg Gimbap ${req.body.spamQty}x</li>`;
+            if (req.body.spamQty > 1) {
+              price += 150 * req.body.spamQty;
+            } else {
+              price += 150;
+            }
           }
           if (gimbox40) {
             orders += `
       <li>Order: Gimbox(40) ${req.body.gimboxQty40}x (${select40})</li>`;
+          
+      if (req.body.gimboxQty40 > 1) {
+        if (select40 == "Pork Gimbox") {
+          price += 500 * req.body.gimboxQty40;
+        }
+        else if(select40 == "Vegan Gimbox") {
+          price += 500 * req.body.gimboxQty40;
+        }
+        else if (select40 == "Bulgogi Gimbox") {
+          price += 550 * req.body.gimboxQty40;
+        }
+        else if(select40 == "Spam and Egg Gimbox"){
+          price += 550 * req.body.gimboxQty40;
+        } 
+        else if(select40 == "Assorted"){
+          price += 600 * req.body.gimboxQty40;
+        } 
+      }else{
+        if (select40 == "Pork Gimbox") {
+          price += 500;
+        }
+        else if(select40 == "Vegan Gimbox") {
+          price += 500;
+        }
+        else if (select40 == "Bulgogi Gimbox") {
+          price += 550;
+        }
+        else if(select40 == "Spam and Egg Gimbox"){
+          price += 550;
+        } 
+        else if(select40 == "Assorted"){
+          price += 600;
+        } 
+      } 
+      
+
           }
           if (gimbox80) {
             orders += `
       <li>Order: Gimbox(80) ${req.body.gimboxQty80}x (${select80})</li>`;
+      if (req.body.gimboxQty80 > 1) {
+        if (select80 == "Pork Gimbox") {
+          price += 900 * req.body.gimboxQty80;
+        }
+        else if(select80 == "Vegan Gimbox") {
+          price += 900 * req.body.gimboxQty80;
+        }
+        else if (select80 == "Bulgogi Gimbox") {
+          price += 950 * req.body.gimboxQty80;
+        }
+        else if(select80 == "Spam and Egg Gimbox"){
+          price += 950 * req.body.gimboxQty80;
+        } 
+        else if(select80 == "Assorted"){
+          price += 1000 * req.body.gimboxQty80;
+        } 
+      }else{
+        if (select80 == "Pork Gimbox") {
+          price += 900;
+        }
+        else if(select80 == "Vegan Gimbox") {
+          price += 900;
+        }
+        else if (select80 == "Bulgogi Gimbox") {
+          price += 950;
+        }
+        else if(select80 == "Spam and Egg Gimbox"){
+          price += 950;
+        } 
+        else if(select80 == "Assorted"){
+          price += 1000;
+        } 
+      } 
           }
 
-    const output = `
-    <p>You have a new order!</p>
-    <h3>Details</h3>
+          const output = `
+    <p>New order from ${req.body.name}!</p>
+    <h3>Order Details:</h3>
     <ul>
         <li>Name: ${req.body.name}</li>
         <li>Address: ${req.body.address}</li>
@@ -103,13 +194,14 @@ app.post("/send", (req, res) => {
         <li>Mode of Payment: ${req.body.modePmt}</li>
         ${orders}
     </ul>
-    <h3>Instructions</h3>
+    <h3>Estimated Total: &#8369;${price}.00</h3>
+    <h3>Instructions:</h3>
     <p>${req.body.instructions}</p>
     `;
 
-    const outputClient = `
+          const outputClient = `
     <p>Here is your order summary. Thank you very much! We will be contacting you soon!</p>
-    <h3>Details</h3>
+    <h3>Summary:</h3>
     <ul>
         <li>Name: ${req.body.name}</li>
         <li>Address: ${req.body.address}</li>
@@ -118,7 +210,8 @@ app.post("/send", (req, res) => {
         <li>Mode of Payment: ${req.body.modePmt}</li>
         ${orders}
     </ul>
-    <h3>Instructions</h3>
+    <h3>Estimated Total: &#8369;${price}.00</h3>
+    <h3>Instructions:</h3>
     <p>${req.body.instructions}</p>
     `;
           let transporter = nodemailer.createTransport({
