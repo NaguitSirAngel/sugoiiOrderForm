@@ -194,7 +194,7 @@ app.post("/send", (req, res) => {
         <li>Mode of Payment: ${req.body.modePmt}</li>
         ${orders}
     </ul>
-    <h3>Estimated Total: &#8369;${price}.00</h3>
+    <h3>Estimated Total: &#8369;${price.toFixed(2)}</h3>
     <h3>Instructions:</h3>
     <p>${req.body.instructions}</p>
     `;
@@ -210,7 +210,7 @@ app.post("/send", (req, res) => {
         <li>Mode of Payment: ${req.body.modePmt}</li>
         ${orders}
     </ul>
-    <h3>Estimated Total: &#8369;${price}.00</h3>
+    <h3>Estimated Total: &#8369;${price.toFixed(2)}</h3>
     <h3>Instructions:</h3>
     <p>${req.body.instructions}</p>
     `;
