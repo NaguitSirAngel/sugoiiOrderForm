@@ -5,6 +5,7 @@ const exphbs = require("express-handlebars");
 const path = require("path");
 const nodemailer = require("nodemailer");
 const app = express();
+const { google } = require('googleapis');
 require("dotenv").config();
 
 //console.log(process.env.EMAIL);
@@ -214,17 +215,28 @@ app.post("/send", (req, res) => {
     <h3>Instructions:</h3>
     <p>${req.body.instructions}</p>
     `;
+
+          const oAuth2Client = new google.auth.OAuth2(process.env.CLIENT_ID, process.env.CLIENT_SECRET, process.env.REDIRECT_URL);
+          oAuth2Client.setCredentials({refresh_token: process.env.REF_TOKEN});
+
+          const accessToken = oAuth2Client.getAccessToken(); 
           let transporter = nodemailer.createTransport({
+            service: 'gmail', 
             host: "smtp.gmail.com",
             port: 587,
             secure: false, // true for 465, false for other ports
             auth: {
+              type: 'OAuth2',
               user: process.env.EMAIL, // generated ethereal user
-              pass: process.env.EMAIL_PASS, // generated ethereal password
-            },
-            tls: {
-              rejectUnauthorized: false,
-            },
+              // pass: process.env.EMAIL_PASS, // generated ethereal password
+              clientId: process.env.CLIENT_ID,
+              clientSecret: process.env.CLIENT_SECRET,
+              refreshToken: process.env.REF_TOKEN,
+              accessToken: accessToken
+            }
+            // tls: {
+            //   rejectUnauthorized: false,
+            // },
           });
 
           // Admin email
